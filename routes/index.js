@@ -8,11 +8,12 @@ router
         res.render('search');
     })
     .post('/', (req, res, next) => {
+        const type = req.body.type;
         const title = req.body.title;
-        res.redirect(`/${title.toLowerCase()}`)
+        res.redirect(`/${type}/${title.toLowerCase()}`)
     })
-    .get('/:title', controller.findMoviesByTitle)
-    .get('/movie/:search/:id', controller.findMovieById)
+    .get('/:type/:title', controller.findMoviesByTitle)
+    .get('/:type/:search/:id', controller.findMovieById)
 
 
 module.exports = router;

@@ -4,15 +4,29 @@
 <body>
     <a href="/">
         <button class="btn btn-secondary m-3">
-            Back to search
+            Back to Home
         </button>
     </a>
+    <form action="/" method="POST">
+        <div class="row m-0 p-0 justify-content-center mt-3">
+            <input type="text" id="title" name="title" class="col-6 form-control" style="width: 50%;">
+        </div>
+        <div class="row m-0 p-0 justify-content-center mt-2">
+            <select name="type" id="type" class="form-control" style="width: 30%;">
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+              </select>
+        </div>
+        <div class="row m-0 p-0 justify-content-center mt-2">
+            <button type="submit" class="btn btn-dark col-3">Search</button>
+        </div>
+    </form>
     <% 
         if(movies.length > 0) {%>
             <div class="row m-0 p-0 justify-content-center mb-5">
             <%for(movie of movies) { %>
                 <div class="col-10 col-md-4 col-lg-2">
-                    <a href="/movie/<%=search%>/<%=movie.id%>">
+                    <a href="/<%=type%>/<%=search%>/<%=movie.id%>">
                         <div class="row m-0 p-0 justify-content-center card mt-3">
                             <div class="card-body justify-content-center" style="text-align: center;">
                                 <% if(movie.poster_path == null){%>
@@ -22,7 +36,11 @@
                                 <%}%>
                             </div>
                             <div class="card-footer">
-                                <p class="col-12" style="font-size:10pt; text-decoration: none; color: black; font-weight: bold;"><%=movie.original_title%></p>
+                                <% if (type == 'movie') { %>
+                                    <p class="col-12" style="font-size:10pt; text-decoration: none; color: black; font-weight: bold;"><%=movie.title%></p>
+                                <%} else {%>
+                                    <p class="col-12" style="font-size:10pt; text-decoration: none; color: black; font-weight: bold;"><%=movie.name%></p>
+                                <%}%>
                             </div>
                         </div>
                     </a>
@@ -30,8 +48,11 @@
             <% } %>
             </div>
         <%}
-        else {%>
-            <h1>No movies found</h1> 
-        <%}%>
+        else {
+            if(type == 'movie') { %>
+                <h1 class="mt-5" style="text-align: center; color: white;">No movie found by the name of <i><%=search%></i></h1> 
+            <%} else{%>
+                <h1 class="mt-5" style="text-align: center; color: white;">No TV show found by the name of <i><%=search%></i></h1> 
+            <%}}%>
 </body>
 </html>
