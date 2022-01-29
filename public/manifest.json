@@ -7,8 +7,8 @@
     "description": "A place to find out where movies can be watched",
     "icons": [
         {
-            "src": "/img/magnify-128.png",
-            "sizes": "128x128",
+            "src": "/img/magnify-144.png",
+            "sizes": "144x144",
             "type": "image/png",
             "purpose": "any"
         },
