@@ -1,0 +1,27 @@
+<%- include('./includes/header.ejs') %>
+<link rel="apple-touch-icon" sizes="10x10" href="img/magnifyingGlass.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#343a40"/>
+<title>Search</title>
+</head>
+<body>
+    <div class="row m-0 p-0 justify-content-center mt-5">
+        <img src="/img/clapperboard.svg" alt="" style="max-height: 230px;" class="col-4 col-md-2 col-lg-2" />
+    </div>
+    <form action="/" method="POST">
+        <div class="row m-0 p-0 justify-content-center mt-3">
+            <input type="text" id="title" name="title" class="col-6 form-control" style="width: 50%;">
+        </div>
+        <div class="row m-0 p-0 justify-content-center mt-2">
+            <select name="type" id="type" class="form-control" style="width: 30%;">
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+              </select>
+        </div>
+        <div class="row m-0 p-0 justify-content-center mt-2">
+            <button type="submit" class="btn btn-dark col-3">Search</button>
+        </div>
+    </form>
+    <script src="js/search.js"></script>
+</body>
+</html>

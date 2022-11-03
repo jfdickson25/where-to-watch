@@ -1,0 +1,34 @@
+<%- include('./includes/header.ejs') %>
+    <title>Movies</title>
+</head>
+<body>
+    <a href="/<%=type%>/<%=search%>">
+        <button class="btn btn-secondary m-3">Back to list</button>
+    </a>
+    <div class="row m-0 p-0 justify-content-center">
+        <div class="col-10">
+            <div class="row justify-content-center">
+                <img src="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>" alt="" class="col-10 col-md-3 col-lg-3 p-3" style="max-height: 460px; background-color: white; box-shadow: 5px 5px 5px rgba(49, 49, 49, 0.856);" />
+                <div class="row m-0 p-0 mt-3 justify-content-center">
+                    <% if (options && options.flatrate) {
+                        for(service of options.flatrate) {%>
+                        <div class="col-4 col-md-1 col-lg-1">
+                            <div class="row">
+                                <img src="https://image.tmdb.org/t/p/w500<%=service.logo_path%>" alt="" class="img-fluid" style="max-height: 70px; border-radius: 50%;" />
+                                <p class="col-12" style="color: white; text-align: center;"><%=service.provider_name%></p>
+                            </div>
+                        </div>
+                    <%}
+                    }
+                    else { %>
+                        <div class="row m-0 p-0 mt-3 justify-content-center mb-5">
+                            <h4 class="col-8 bg-white pt-3 pb-3 img-fluid" style="text-align: center;">Not available to stream</h4>
+                        </div>
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
