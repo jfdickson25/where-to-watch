@@ -1,7 +1,8 @@
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 exports.findMoviesByTitle = (req, res, next) => {
-    fetch(`https://api.themoviedb.org/3/search/${req.params.type}?api_key=${MOVIE_API_KEY}&query=${req.params.title}`)
+    fetch(`https://api.themoviedb.org/3/search/${req.params.type}?api_key=${process.env.MOVIE_API_KEY}&query=${req.params.title}`)
     .then(result => result.json())
     .then(movies => {
         res.status(200).render('movies-search-result', {
@@ -16,10 +17,10 @@ exports.findMoviesByTitle = (req, res, next) => {
 }
 
 exports.findMovieById = (req, res, next) => {
-    fetch(`https://api.themoviedb.org/3/${req.params.type}/${req.params.id}?api_key=${MOVIE_API_KEY}`)
+    fetch(`https://api.themoviedb.org/3/${req.params.type}/${req.params.id}?api_key=${process.env.MOVIE_API_KEY}`)
     .then(result => result.json())
     .then(movie => {
-        fetch(`https://api.themoviedb.org/3/${req.params.type}/${req.params.id}/watch/providers?api_key=${MOVIE_API_KEY}`)
+        fetch(`https://api.themoviedb.org/3/${req.params.type}/${req.params.id}/watch/providers?api_key=${process.env.MOVIE_API_KEY}`)
         .then(result => result.json())
         .then(movieRentDetails => {
             res.status(200).render('movie-details', {
